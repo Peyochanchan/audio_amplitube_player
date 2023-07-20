@@ -1,0 +1,52 @@
+<div class="md:container md:mx-auto">
+<h1 class="text-center text-white my-5 py-5">FORM SONG</h1>
+<%= form_with model: song, builder: TailwindFormBuilder do |form| %>
+  <% if form.object.errors.any? %>
+    <div class="m-3">
+      <% form.object.errors.full_messages.each do |error| %>
+        <div><%= error %></div>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="container mx-auto w-9/12">
+    <div class="flex flex-col m-3">
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+    </div>
+
+    <div class="flex flex-col m-3">
+      <%= form.label :album %>
+      <%= form.text_field :album %>
+    </div>
+
+    <div class="flex flex-col m-3">
+      <%= form.label :artist %>
+      <%= form.text_field :artist %>
+    </div>
+
+    <div class="flex flex-col m-3">
+      <%= form.label :url %>
+      <%= form.text_field :url %>
+    </div>
+
+    <div class="flex flex-col m-3">
+      <%= form.label :cover_image %>
+      <%= form.text_field :cover_image %>
+    </div>
+
+    <div class="flex flex-col mx-auto items-center w-2/12 m-3">
+      <%= form.label :position %>
+      <%= form.number_field :position, class: "mt-1 block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
+    </div>
+
+    <div class="flex flex-col text-center mx-auto w-2/12 m-3">
+      <%= form.label :duration %>
+      <%= form.time_select :duration %>
+    </div>
+    <div class="text-center">
+      <%= form.button class:"middle none center mr-4 rounded-lg bg-blue-500 py-3 px-6 font-sans text-xs font-bold uppercase text-black shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" %>
+      <%= link_to "delete song", song_path(song), method: :delete if params[:action] == 'edit' %>
+    </div>
+  <% end %>
+</div>
+</div>
